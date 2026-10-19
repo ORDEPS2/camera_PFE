@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#e63946">
+  <title>PokéCam — Sua aventura Pokémon</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="topo">
+    <a class="logo" href="#">
+      <span class="logo-bola"><span></span></span>
+      <span>Poké<span>Cam</span></span>
+    </a>
+    <span class="slogan">Registre sua aventura!</span>
+  </header>
+
+  <main class="container">
+    <section class="introducao">
+      <p class="etiqueta">POKÉMON TRAINER CAMERA</p>
+      <h1>Sua foto, sua <span>aventura!</span></h1>
+      <p>Prepare a pose, escolha seus parceiros Pokémon e registre o momento.</p>
+    </section>
+
+    <section class="painel">
+      <div class="painel-titulo">
+        <div>
+          <span class="mini-titulo">ÁREA DE CAPTURA</span>
+          <h2>PokéCâmera</h2>
+        </div>
+        <span class="status" id="status-camera">
+          <span class="status-ponto"></span>
+          Câmera desligada
+        </span>
+      </div>
+
+      <div class="area-camera">
+        <div class="moldura-visual" id="moldura">
+          <video id="camera" autoplay playsinline muted></video>
+
+          <div class="camera-placeholder" id="mensagem-camera">
+            <div class="icone-camera">📷</div>
+            <h3>Pronto para a aventura?</h3>
+            <p>Ative sua câmera para começar.</p>
+          </div>
+
+          <div class="decoracao-canto canto-superior-esquerdo">
+            <span class="estrela">✦</span>
+            <span class="estrela pequena">✦</span>
+            <div class="pokemons grupo-superior">
+              <img id="poke4" alt="Pokémon parceiro 4">
+              <img id="poke5" alt="Pokémon parceiro 5">
+            </div>
+          </div>
+
+          <div class="decoracao-canto canto-inferior-direito">
+            <div class="pokemons grupo-inferior">
+              <img id="poke1" alt="Pokémon parceiro 1">
+              <img id="poke2" alt="Pokémon parceiro 2">
+              <img id="poke3" alt="Pokémon parceiro 3">
+            </div>
+            <span class="estrela">✦</span>
+          </div>
+
+          <div class="selo-pokecam">POKÉCAM</div>
+
+          <div class="indicador" id="indicador">
+            <span></span> REC
+          </div>
+
+          <div class="efeito-captura" id="efeito-captura" aria-hidden="true">
+            <div class="flash-captura"></div>
+            <div class="pokebola-animada">
+              <div class="metade-bola metade-superior"></div>
+              <div class="metade-bola metade-inferior"></div>
+              <div class="faixa-bola"></div>
+              <div class="botao-bola"><span></span></div>
+              <div class="brilho-bola"></div>
+            </div>
+            <p class="texto-captura">POKÉMON, VAI!</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="mensagem" id="mensagem" role="status">
+        Ative a câmera e chame seus Pokémon!
+      </p>
+
+      <div class="controles">
+        <button class="botao botao-secundario" id="ligar-camera" type="button">
+          <span>◎</span> Ligar câmera
+        </button>
+        <button class="botao botao-principal" id="tirar-foto" type="button" disabled>
+          <span>●</span> Tirar foto
+        </button>
+        <button class="botao botao-secundario" id="desligar-camera" type="button" disabled>
+          Desligar
+        </button>
+      </div>
+
+      <div class="linha-controles">
+        <button class="botao botao-amarelo" id="trocar-pokemon" type="button">
+          <span>✦</span> Lançar Poké Bola
+        </button>
+        <span class="dica">Os Pokémon só mudam quando você pedir.</span>
+      </div>
+
+      <section class="filtros">
+        <h3>Escolha um filtro</h3>
+        <div class="lista-filtros">
+          <button class="filtro ativo" data-filtro="original" type="button">Original</button>
+          <button class="filtro" data-filtro="retro" type="button">Retrô</button>
+          <button class="filtro" data-filtro="pb" type="button">Preto e branco</button>
+          <button class="filtro" data-filtro="vibrante" type="button">Vibrante</button>
+          <button class="filtro" data-filtro="frio" type="button">Frio</button>
+          <button class="filtro" data-filtro="quente" type="button">Quente</button>
+        </div>
+      </section>
+    </section>
+
+    <section class="painel resultado" id="resultado" hidden>
+      <div class="painel-titulo">
+        <div>
+          <span class="mini-titulo">MISSÃO CONCLUÍDA</span>
+          <h2>Sua foto Pokémon</h2>
+        </div>
+      </div>
+
+      <div class="foto-container">
+        <img id="foto-final" alt="Foto capturada com a moldura Pokémon">
+      </div>
+
+      <div class="controles">
+        <button class="botao botao-principal" id="baixar-foto" type="button">
+          Baixar foto
+        </button>
+        <button class="botao botao-secundario" id="nova-foto" type="button">
+          Tirar outra
+        </button>
+        <button class="botao botao-secundario" id="ver-galeria" type="button">
+          Ver galeria
+        </button>
+      </div>
+    </section>
+
+    <section class="painel galeria" id="galeria">
+      <div class="painel-titulo">
+        <div>
+          <span class="mini-titulo">SUAS MEMÓRIAS</span>
+          <h2>Galeria de aventuras</h2>
+        </div>
+        <span class="contador"><span id="total-fotos">0</span> fotos</span>
+      </div>
+
+      <div class="galeria-vazia" id="galeria-vazia">
+        <div class="icone-galeria">▧</div>
+        <p>Você ainda não tem fotos salvas.</p>
+        <span>Suas capturas aparecerão aqui.</span>
+      </div>
+
+      <div class="galeria-fotos" id="galeria-fotos"></div>
+    </section>
+  </main>
+
+  <div class="visualizador" id="visualizador" hidden>
+    <div class="modal">
+      <button class="fechar-modal" id="fechar-visualizador" type="button" aria-label="Fechar">×</button>
+      <img id="foto-ampliada" alt="Foto da galeria">
+      <p id="data-ampliada"></p>
+      <div class="controles">
+        <button class="botao botao-principal" id="baixar-ampliada" type="button">Baixar</button>
+        <button class="botao botao-secundario" id="excluir-ampliada" type="button">Excluir foto</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span class="rodape-bola"></span>
+    PokéCam — Feito para treinadores Pokémon.
+    <span class="credito">Pokémon e seus personagens pertencem aos seus respectivos proprietários.</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
